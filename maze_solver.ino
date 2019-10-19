@@ -13,8 +13,13 @@ int trigPinLeft = ;
 int echoPinLeft = ;
 int trigPinRight = ;
 int echoPinRight = ;
+float rightThreshold = ;
+float leftThreshold = ;
+float forwardThreshold = ;
+float backwardThreshold = ;
 long duration_forward, duration_backward, duration_right, duration_left;
 float distance_forward, distance_backward, distance_right, distance_left;
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -134,7 +139,33 @@ float calculateDistanceRight(){
 
 void loop() {
   // put your main code here, to run repeatedly:
+     distance_forward = calculateDistanceeForward() ;
+     distance_backward = calculateDistanceeBackward();
+     distance_left = calculateDistanceeLeft();
+     distance_right = calculateDistanceeRight();
 
-  
+     if(diatance_left>threshold_left) { 
+              left();
+              delay();  //delay for left
+              forward();
+     }
+                                        
+     else if(distance_forward > threshold_forward) forward();
+     else if(distance_right > threshold_right) {
+          right();
+          delay();   // delay for right
+          forward();
+     }
+
+     else{
+      right();
+      delay();      //delay for 180 degrees turn
+      forward(); 
+     }
+
+     
+      
+
+     
 
 }
